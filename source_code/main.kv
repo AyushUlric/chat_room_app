@@ -1,0 +1,264 @@
+#:import SlideTansition kivy.uix.screenmanager.SlideTransition
+
+ScreenManager:
+	ConnectToServer:
+		name: "connect_to_server"
+		id: connect_to_server
+	HomeScreen:
+		name: "home_screen"
+		id: home_screen
+	JoinRoom:
+		name: "join_room"
+		id: join_room
+	CreateRoom:
+		name: "create_room"
+		id: create_room
+	ChatRoom:
+		name: "chat_room"
+		id: chat_room
+
+<ConnectToServer>:
+	MDBoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Connection details"
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 2
+				cols: 1
+				MDBoxLayout:
+					size_hint_y: 0.7
+					orientation: "vertical"
+					padding: 16
+					md_bg_color: 1,1,1,1
+					MDBoxLayout:
+						orientation: "vertical"
+						padding: 2
+						md_bg_color: 1,0,0,1
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDTextField:
+								mode: "rectangle"
+								size_hint_x: 0.5
+								pos_hint: {"center_x": 0.5}
+								id: url
+								hint_text: "Server url"
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							Widget:
+								height: 10
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDTextField:
+								mode: "rectangle"
+								size_hint_x: 0.5
+								pos_hint: {"center_x": 0.5}
+								id: port
+								hint_text: "Server port"
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							Widget:
+								height: 10
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDRoundFlatButton:
+								pos_hint: {"center_x": 0.5}
+								id: create
+								text: "Attempt Connection"
+								on_release: app.connect_to_server(url.text, port.text)
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_y: 0.3
+					padding: 16
+					MDCard:
+						orientation: "vertical"
+						elevation: 10
+						padding: 8
+						MDLabel:
+							text: "CHAT ROOM"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 1,0,0,1
+							font_style: "H5"
+						MDLabel:
+							text: "--Project By--"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 0,0,0,0.3
+							font_style: "H6"
+						MDLabel:
+							text: "AYUSH PRATAP SINGH && D R YUVAM"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 0,0,0,0.5
+							font_style: "H6"
+
+<HomeScreen>:
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: 1,1,1,0.5
+		MDToolbar:
+			title: "CHAT ROOM"
+		GridLayout:
+			rows: 7
+			cols: 1
+			BoxLayout:
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDTextField:
+					mode: "rectangle"
+					size_hint_x: 0.5
+					pos_hint: {"center_x": 0.5}
+					id: room_code
+					hint_text: "Room ID"
+			BoxLayout:
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDRoundFlatButton:
+					pos_hint: {"center_x": 0.5}
+					id: join
+					text: "Join"
+					on_release: app._join_room(room_code.text)	
+			MDLabel:
+				markup: True
+				text: "--Or--"
+				halign: "center"
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDRoundFlatButton:
+					pos_hint: {'center_x': 0.5}
+					id: join
+					text: "Create your own room"
+					on_release: app.root.current = "create_room"
+			BoxLayout:
+
+<JoinRoom>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Choose a name"
+			left_action_items: [['arrow-left', lambda x: setattr(root.manager, "current", "home_screen")]]
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 5
+				cols: 1
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: nickname
+						hint_text: "Nickname"
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDRoundFlatButton:
+						pos_hint: {"center_x": 0.5}
+						id: join
+						text: "Join"
+						on_release: app.join_room(nickname.text)
+				BoxLayout:
+
+<CreateRoom>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Create a new room"
+			left_action_items: [['arrow-left', lambda x: setattr(root.manager, "current", "home_screen")]]
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 6
+				cols: 1
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: room_id
+						hint_text: "Room ID"
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: nickname
+						hint_text: "Your nickname"
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDRoundFlatButton:
+						pos_hint: {"center_x": 0.5}
+						id: create
+						text: "Create"
+						on_release: app.create_room(room_id.text, nickname.text)
+				BoxLayout:
+
+<ChatRoom>:
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: (6/255,4/255,24/255,1)
+		MDToolbar:
+			id: toolbar
+			title: "Room 987" 
+			right_action_items: [["information-outline", lambda x: app.get_room_info()], ["exit-to-app", lambda x: app.exit_room()]]
+		GridLayout:
+			rows: 2
+			cols: 1
+			BoxLayout:
+				size_hint_y: 0.8
+				orientation: "vertical"
+				ScrollView:
+					id: chat_view
+					MDList:
+						id: chat_list
+						spacing: 1
+			MDBoxLayout:
+				size_hint_y: 0.2
+				orientation: "vertical"
+				GridLayout:
+					cols: 2
+					rows: 1
+					BoxLayout:
+						padding: [5, 0, 5, 0]
+						orientation: "vertical"
+						size_hint_x: 0.8
+						MDTextField:
+							mode: "fill"
+							id: message
+							hint_text: "Message"
+							max_text_length: 50
+					BoxLayout:
+						orientation: "vertical"
+						size_hint_x: 0.2
+						MDIconButton:
+							icon: "send-circle"
+							user_font_size: "34sp"
+							theme_text_color: "Custom"
+							text_color: app.theme_cls.primary_color
+							on_release: app.send_message(message.text)
