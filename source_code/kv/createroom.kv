@@ -1,0 +1,40 @@
+<CreateRoom>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Create a new room"
+			left_action_items: [['arrow-left', lambda x: setattr(root.manager, "current", "home_screen")]]
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 6
+				cols: 1
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: room_id
+						hint_text: "Room ID"
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: nickname
+						hint_text: "Your nickname"
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDRoundFlatButton:
+						pos_hint: {"center_x": 0.5}
+						id: create
+						text: "Create"
+						on_release: app.create_room(room_id.text, nickname.text)
+				BoxLayout:

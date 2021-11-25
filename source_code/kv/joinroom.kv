@@ -1,0 +1,31 @@
+<JoinRoom>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Choose a name"
+			left_action_items: [['arrow-left', lambda x: setattr(root.manager, "current", "home_screen")]]
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 5
+				cols: 1
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDTextField:
+						mode: "rectangle"
+						size_hint_x: 0.5
+						pos_hint: {"center_x": 0.5}
+						id: nickname
+						hint_text: "Nickname"
+				BoxLayout:
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_x: 1
+					MDRoundFlatButton:
+						pos_hint: {"center_x": 0.5}
+						id: join
+						text: "Join"
+						on_release: app.join_room(nickname.text)
+				BoxLayout:

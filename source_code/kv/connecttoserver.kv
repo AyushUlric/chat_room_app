@@ -1,0 +1,86 @@
+<ConnectToServer>:
+	MDBoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: "Connection details"
+		BoxLayout:
+			orientation: "vertical"
+			GridLayout:
+				rows: 2
+				cols: 1
+				MDBoxLayout:
+					size_hint_y: 0.7
+					orientation: "vertical"
+					padding: 16
+					md_bg_color: 1,1,1,1
+					MDBoxLayout:
+						orientation: "vertical"
+						padding: 2
+						md_bg_color: 1,0,0,1
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDTextField:
+								mode: "rectangle"
+								size_hint_x: 0.5
+								pos_hint: {"center_x": 0.5}
+								id: url
+								hint_text: "Server url"
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							Widget:
+								height: 10
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDTextField:
+								mode: "rectangle"
+								size_hint_x: 0.5
+								pos_hint: {"center_x": 0.5}
+								id: port
+								hint_text: "Server port"
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							Widget:
+								height: 10
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+							orientation: "vertical"
+							size_hint_x: 1
+							MDRoundFlatButton:
+								pos_hint: {"center_x": 0.5}
+								id: create
+								text: "Attempt Connection"
+								on_release: app.connect_to_server(url.text, port.text)
+						MDBoxLayout:
+							md_bg_color: 1,1,1,1
+				BoxLayout:
+					orientation: "vertical"
+					size_hint_y: 0.3
+					padding: 16
+					MDCard:
+						orientation: "vertical"
+						elevation: 10
+						padding: 8
+						MDLabel:
+							text: "CHAT ROOM"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 1,0,0,1
+							font_style: "H5"
+						MDLabel:
+							text: "--Project By--"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 0,0,0,0.3
+							font_style: "H6"
+						MDLabel:
+							text: "AYUSH PRATAP SINGH && D R YUVAM"
+							halign: "center"
+							theme_text_color: "Custom"
+							text_color: 0,0,0,0.5
+							font_style: "H6"

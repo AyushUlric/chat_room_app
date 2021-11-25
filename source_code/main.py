@@ -1,7 +1,6 @@
 import sys
 import socket
 import screens
-import screen_manager
 from threading import Thread
 from kivymd.app import MDApp
 from kivy.lang import Builder
@@ -24,7 +23,7 @@ class ChatApp(MDApp):
 	room_id = ""
 	name = ""
 
-	# Overriding the default constructor to bind keyboard and window.
+	# Overriding the default constructor to bind window and keyboard events.
 	def __init__(self, **kwargs):
 		super(ChatApp, self).__init__(**kwargs)
 		Window.bind(on_keyboard=self.events)

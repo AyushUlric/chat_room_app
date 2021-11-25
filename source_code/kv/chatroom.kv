@@ -1,0 +1,43 @@
+<ChatRoom>:
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: (6/255,4/255,24/255,1)
+		MDToolbar:
+			id: toolbar
+			title: "Room 987" 
+			right_action_items: [["information-outline", lambda x: app.get_room_info()], ["exit-to-app", lambda x: app.exit_room()]]
+		GridLayout:
+			rows: 2
+			cols: 1
+			BoxLayout:
+				size_hint_y: 0.8
+				orientation: "vertical"
+				ScrollView:
+					id: chat_view
+					MDList:
+						id: chat_list
+						spacing: 1
+			MDBoxLayout:
+				size_hint_y: 0.2
+				orientation: "vertical"
+				GridLayout:
+					cols: 2
+					rows: 1
+					BoxLayout:
+						padding: [5, 0, 5, 0]
+						orientation: "vertical"
+						size_hint_x: 0.8
+						MDTextField:
+							mode: "fill"
+							id: message
+							hint_text: "Message"
+							max_text_length: 50
+					BoxLayout:
+						orientation: "vertical"
+						size_hint_x: 0.2
+						MDIconButton:
+							icon: "send-circle"
+							user_font_size: "34sp"
+							theme_text_color: "Custom"
+							text_color: app.theme_cls.primary_color
+							on_release: app.send_message(message.text)

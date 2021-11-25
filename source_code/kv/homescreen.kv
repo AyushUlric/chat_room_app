@@ -1,0 +1,41 @@
+<HomeScreen>:
+	MDBoxLayout:
+		orientation: "vertical"
+		md_bg_color: 1,1,1,0.5
+		MDToolbar:
+			title: "CHAT ROOM"
+		GridLayout:
+			rows: 7
+			cols: 1
+			BoxLayout:
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDTextField:
+					mode: "rectangle"
+					size_hint_x: 0.5
+					pos_hint: {"center_x": 0.5}
+					id: room_code
+					hint_text: "Room ID"
+			BoxLayout:
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDRoundFlatButton:
+					pos_hint: {"center_x": 0.5}
+					id: join
+					text: "Join"
+					on_release: app._join_room(room_code.text)	
+			MDLabel:
+				markup: True
+				text: "--Or--"
+				halign: "center"
+			BoxLayout:
+				orientation: "vertical"
+				size_hint_x: 1
+				MDRoundFlatButton:
+					pos_hint: {'center_x': 0.5}
+					id: join
+					text: "Create your own room"
+					on_release: app.root.current = "create_room"
+			BoxLayout:
